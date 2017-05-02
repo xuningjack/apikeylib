@@ -57,17 +57,21 @@ int registerNativeMethods(JNIEnv *env, const char *className,
 namespace jack {
 
     class Api_Param {
-    public:
-        std::string to_string() {
-            std::stringstream os;
-            //os << key << "=" << value;
-            os<<value;
-            return os.str();
-        }
+        public:
+            /**
+             * 返回键值对中的值
+             * @return
+             */
+            std::string to_string() {
+                std::stringstream os;
+                //os << key << "=" << value;
+                os<<value;
+                return os.str();
+            }
 
 
-    public:
-        Api_Param(std::string _key, std::string _value) : key(_key), value(_value) {}
+        public:
+            Api_Param(std::string _key, std::string _value) : key(_key), value(_value) {}
 
         std::string key, value;
     };
