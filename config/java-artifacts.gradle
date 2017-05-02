@@ -1,0 +1,38 @@
+apply plugin: 'maven-publish'
+
+sourceCompatibility = rootProject.ext.JAVA_VERSION
+targetCompatibility = rootProject.ext.JAVA_VERSION
+
+task sourcesJar(type: Jar) {
+    from sourceSets.main.java.srcDirs
+    classifier = 'sources'
+}
+
+task javadocJar(type: Jar, dependsOn: javadoc) {
+    classifier = 'javadoc'
+    from javadoc.destinationDir
+}
+
+artifacts {
+    archives javadocJar
+    archives sourcesJar
+}
+
+afterEvaluate { project ->
+    tasks.all { Task task ->
+        if (task.name.equalsIgnoreCase('publishPtBusKitsPublicationToMavenLocal')) {
+            task.dependsOn tasks.getByName('assemble')
+        }
+    }
+}
+
+publishing {
+    publications {
+        PtBusKits(MavenPublication) {
+            from components.java
+            groupId = group
+            artifactId = project.getName()
+            version = version
+        }
+    }
+}
