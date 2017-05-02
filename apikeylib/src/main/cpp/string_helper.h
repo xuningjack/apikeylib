@@ -23,12 +23,6 @@ static const char *TAG = "jack-jni";
 
 // 定义转string的方法
 namespace jack {
-    template<typename T>
-    std::string to_string(T value) {
-        std::stringstream os;
-        os << value;
-        return os.str();
-    }
 
     static void split_string(const std::string &s, std::vector<std::string> &v,
                              const std::string &c) {
@@ -79,29 +73,6 @@ namespace jack {
         }
         return oss.str();
     }
-
-    void throw_by_name(JNIEnv *env, const char *name, const char *msg) {
-        // 查找异常类
-        jclass cls = env->FindClass(name);
-        /* 如果这个异常类没有找到，VM会抛出一个NowClassDefFoundError异常 */
-        if (cls != NULL) {
-            env->ThrowNew(cls, msg);  // 抛出指定名字的异常
-        }
-        /* 释放局部引用 */
-        env->DeleteLocalRef(cls);
-    }
-
-    void throw_by_name(JNIEnv *env, const char *msg) {
-        // 查找异常类
-        jclass cls = env->FindClass("java/lang/Exception");
-        /* 如果这个异常类没有找到，VM会抛出一个NowClassDefFoundError异常 */
-        if (cls != NULL) {
-            env->ThrowNew(cls, msg);  // 抛出指定名字的异常
-        }
-        /* 释放局部引用 */
-        env->DeleteLocalRef(cls);
-    }
-
 }
 
 #endif //APIKEYNATIVELIB_PWRD_HELPER_H
