@@ -46,5 +46,3 @@ dependencies {
     testCompile 'junit:junit:4.12'
 }
 
-apply from: rootProject.file('config/gradle-mvn-push.gradle')
-apply from: rootProject.file('config/android-artifacts.gradle')
