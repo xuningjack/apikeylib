@@ -10,7 +10,7 @@ public final class SignHelper {
     }
 
     /**
-     * request_body按照key排序后value拼接，格式如：key1=value1&key2=value2
+     * request_body(格式如：key1=value1&key2=value2)按照key排序后value拼接。
      * MD5源数据的字符串后，拼接user_token、appkey、timestamp后md5
      * @param requestBody 请求参数string，格式如：key1=value1&key2=value2
      * @param userToken   用户token       若无用null
