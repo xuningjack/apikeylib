@@ -1,14 +1,15 @@
 package cn.jack.apikeynativelib;
 
+import android.app.Activity;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.widget.TextView;
 
 import com.jack.apikeylib.SignHelper;
 
 
-public class MainActivity extends AppCompatActivity {
+
+public class MainActivity extends Activity {
 
     public static final String APP_KEY = "123456";
 
