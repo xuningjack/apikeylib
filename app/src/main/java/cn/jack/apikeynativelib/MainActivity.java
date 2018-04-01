@@ -13,6 +13,8 @@ public class MainActivity extends Activity {
 
     public static final String APP_KEY = "123456";
 
+
+
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -20,7 +22,7 @@ public class MainActivity extends Activity {
 
         String resource = "源字符串：a=1&b=2&c=3&d=4";
 
-        final TextView tv = (TextView) findViewById(R.id.sample_text);
+        final TextView tv = findViewById(R.id.sample_text);
         try {
             final StringBuilder sb = new StringBuilder(128);
             sb.append("origin :").append(resource).append("\r\n");
@@ -39,18 +41,26 @@ public class MainActivity extends Activity {
             tv.setText("JNI error");
         }
 
-        TextView getJniEncryptBytes = (TextView)findViewById(R.id.getJniEncryptBytes);
+
+
+
+        TextView getJniEncryptBytes = findViewById(R.id.getJniEncryptBytes);
         String sign = SignHelper.getJniEncryptBytes(resource);
         getJniEncryptBytes.setText("原有sign加上appkey后，" +
-                "使用MD5加密拼接好的字节数组(在getSignBySort之后使用) getJniEncryptBytes: " + sign);
+                "使用MD5加密拼接好的字节数组getJniEncryptBytes: " + sign);
 
 
-        TextView getJniEncrptyBytesByMd5 = (TextView)findViewById(R.id.getJniEncrptyBytesByMd5);
+        TextView getJniEncrptyBytesByMd5 = findViewById(R.id.getJniEncrptyBytesByMd5);
         sign = SignHelper.getJniEncrptyBytesByMd5(resource);
         getJniEncrptyBytesByMd5.setText("MD5源数据的字符串后，再拼接appkey后，再MD5，" +
                 "生成最终的字符串getJniEncrptyBytesByMd5：" + sign);
 
 
+        
+
+
     }
+
+
 
 }
