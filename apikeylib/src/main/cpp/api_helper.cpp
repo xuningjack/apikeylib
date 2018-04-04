@@ -57,6 +57,7 @@ JNIEXPORT static jstring JNICALL get_1Authorization(JNIEnv *env, jobject,
     if(SHOW_LOG){
         LOGI("=======temp before==========\r\n%s", ss.str().c_str());
     }
+    //参数列表拼接md5后
     string temp = MD5(ss.str()).toStr();
     if(SHOW_LOG){
         LOGI("=======temp==========\r\n%s", temp.c_str());
@@ -74,7 +75,8 @@ JNIEXPORT static jstring JNICALL get_1Authorization(JNIEnv *env, jobject,
     if(SHOW_LOG){
         LOGI("=======ss.str() final==========\r\n%s", ss.str().c_str());
     }
-    return env->NewStringUTF(MD5(ss.str()).toStr().c_str());   //返回拼接结果的md5
+    //返回拼接结果md5值+user_token+api_key+timestamp的md5
+    return env->NewStringUTF(MD5(ss.str()).toStr().c_str());
 }
 
 
